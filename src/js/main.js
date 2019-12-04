@@ -20,8 +20,6 @@
    * of paragraphs and then pass the paragraph array items to 
    * the function to provide color to the text
    * 
-   * @TODO Recognise newline characters and replace with a '<br>'
-   * 
    */
 
   console.log("version 0.0.2");
@@ -50,9 +48,11 @@
     const output = document.querySelector('#output');
     // Split the input text into seperate characters into an array
     let chars = text.split('');
-
+    
     // For each of the characters check if it is a part of the charColors array 
     chars.forEach((char, j) => {
+      if (!chars) break;
+      chars[j] = /\n/.exec(char)? '<br>': chars[j];
       charColors.forEach((charColor,i) => {
         // If character in the charColor array item is the same as the character in the chars array item
         if(charColor[0] == char) {
@@ -63,7 +63,6 @@
             // And change the forlast array item into an empty string
             chars[j-1] = '';
           } else if (char != 'e' && char != 'j') {
-            console.log('niet een e/j', char == 'e');
             // Perform the default action of enclosing the character in an span with the right class
             chars[j] = colorChar(charColor[0], charColor[1]);
           }
@@ -73,6 +72,11 @@
 
     // Joint the array of characters back into a single string and put it in 
     output.innerHTML = chars.join('');
+
+    console.log(!chars);
+    if (!chars) {
+      output.innerHTML = 'Dummy text...';
+    }
   });
 
   const colorChar = function(char, color) {
