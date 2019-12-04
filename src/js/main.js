@@ -5,8 +5,13 @@
    * text input is retrieved from the dom and functionality 
    * is defined for the app.
    * 
+   * @TODO Make pretty
+   * 
    * @TODO Put the main business logic in it's own function and 
    * call the function in the eventlister
+   * 
+   * @TODO Add the option to assign extra letters and colors and 
+   * change colors
    * 
    * @TODO Refactor the charColors array, foreach functionality 
    * to use an character: color object instead
