@@ -60,6 +60,21 @@ a:hover {
   text-align: center;
 }
 
+textarea {
+  border-radius: 3px;
+}
+#output .yellow {font-weight: 700; color: #bfbf00;}
+#output .blue   {font-weight: 700; color: blue}
+#output .purple {font-weight: 700; color: purple}
+#output .red    {font-weight: 700; color: red}
+#output .brown  {font-weight: 700; color: brown}
+#output .green  {font-weight: 700; color: green}
+#output .pink   {font-weight: 700; color: pink}
+
+.output-text {
+  font-size: 1.2rem;
+}
+
 @media only screen and (max-width: 720px) {
   header {
     padding: 1rem;
