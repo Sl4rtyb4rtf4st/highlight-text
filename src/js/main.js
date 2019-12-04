@@ -20,6 +20,10 @@
    * of paragraphs and then pass the paragraph array items to 
    * the function to provide color to the text
    * 
+   * @TODO Make the label text so that you cno longer need the 
+   * textarea but only have to klik on the label text and can 
+   * either start typing or past a load of text
+   * 
    */
 
   console.log("version 0.0.2");
@@ -51,7 +55,6 @@
     
     // For each of the characters check if it is a part of the charColors array 
     chars.forEach((char, j) => {
-      if (!chars) break;
       chars[j] = /\n/.exec(char)? '<br>': chars[j];
       charColors.forEach((charColor,i) => {
         // If character in the charColor array item is the same as the character in the chars array item
@@ -72,11 +75,6 @@
 
     // Joint the array of characters back into a single string and put it in 
     output.innerHTML = chars.join('');
-
-    console.log(!chars);
-    if (!chars) {
-      output.innerHTML = 'Dummy text...';
-    }
   });
 
   const colorChar = function(char, color) {
