@@ -103,6 +103,9 @@ textarea {
 }
 
 .output-text {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 1.2rem;
   border: 1px solid lightgray;
   border-radius: 5px;
