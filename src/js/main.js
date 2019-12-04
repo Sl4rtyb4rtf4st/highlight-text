@@ -20,6 +20,8 @@
    * of paragraphs and then pass the paragraph array items to 
    * the function to provide color to the text
    * 
+   * @TODO Recognise newline characters and replace with a '<br>'
+   * 
    */
 
   console.log("version 0.0.2");
