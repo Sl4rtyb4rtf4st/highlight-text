@@ -68,32 +68,32 @@ a:hover {
 #output .blue,
 .blue {
   font-weight: 700; 
-  color: blue
+  color: blue;
 }
 #output .purple,
 .purple {
   font-weight: 700; 
-  color: purple
+  color: purple;
 }
 #output .red,
 .red {
   font-weight: 700; 
-  color: red
+  color: red;
 }
 #output .brown,
 .brown {
   font-weight: 700; 
-  color: brown
+  color: brown;
 }
 #output .green,
 .green {
   font-weight: 700; 
-  color: green
+  color: green;
 }
 #output .pink,
 .pink {
   font-weight: 700; 
-  color: pink
+  color: hotpink;
 }
 
 textarea {
