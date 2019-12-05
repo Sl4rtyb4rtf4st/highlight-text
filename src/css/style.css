@@ -1,24 +1,33 @@
 * {
   box-sizing: border-box;
 }
+root {
+  --base-background-color: #1f1f1f;
+  --base-text-color: #fffafa;
+  --base-header-light-color: #4d4e53;
+  --base-header-dark-color: #fffafa;
+}
 html, body {
-  color: #464646;
+  color: var(--base-text-color);
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
 }
 body {
-  background: #fffafa;
+  background: var(--base-background-color);
   font-family: sans-serif;
 }
 
-h1, h2 {
-  color: #4d4e53;
+h1, h2, h3 {
+  color: var(--base-header-dark-color);
   font-size: 3em;
   font-weight: 500;
 }
 h2 {
   font-size: 2em;
+}
+h3 {
+  font-size: 1.5em;
 }
 a:link, a:hover, a:active, a:focus, a:visited {
   color: rgb(38, 94, 214);
@@ -83,7 +92,7 @@ a:hover {
 #output .brown,
 .brown {
   font-weight: 700; 
-  color: brown;
+  color: saddlebrown;
 }
 #output .green,
 .green {
@@ -97,6 +106,8 @@ a:hover {
 }
 
 textarea {
+  background-color: white;
+  color: black;
   border-radius: 5px;
   max-width: 80%;
   width: 80vw;
@@ -109,10 +120,11 @@ textarea {
   font-size: 1.3rem;
   border: 1px solid lightgray;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
   margin: 40px;
   box-shadow: 0 0 24px -10px black;
-  background-color: #fff;
+  color: white;
+  background-color: #1f1f1f;
 }
 
 @media only screen and (max-width: 720px) {
