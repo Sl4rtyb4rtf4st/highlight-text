@@ -7,9 +7,6 @@
    * 
    * @TODO Make pretty
    * 
-   * @TODO Put the main business logic in it's own function and 
-   * call the function in the eventlister
-   * 
    * @TODO Add the option to assign extra letters and colors and 
    * change colors
    * 
