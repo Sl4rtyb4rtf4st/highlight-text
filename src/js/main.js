@@ -9,6 +9,9 @@
    * 
    * @TODO Add the option to assign extra letters 
    * 
+   * @TODO Refactor to put all the functionality insite an 
+   * object (MVC anyone).
+   * 
    * @TODO Make the label text so that you no longer need the 
    * textarea but only have to klik on the label text and can 
    * either start typing or past a load of text
