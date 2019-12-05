@@ -7,17 +7,9 @@
    * 
    * @TODO Make pretty
    * 
-   * @TODO Add the option to assign extra letters and colors and 
-   * change colors
+   * @TODO Add the option to assign extra letters 
    * 
-   * @TODO Refactor the charColors array, foreach functionality 
-   * to use an character: color object instead
-   * 
-   * @TODO With longer texts with paragraphs, create an array 
-   * of paragraphs and then pass the paragraph array items to 
-   * the function to provide color to the text
-   * 
-   * @TODO Make the label text so that you cno longer need the 
+   * @TODO Make the label text so that you no longer need the 
    * textarea but only have to klik on the label text and can 
    * either start typing or past a load of text
    * 
