@@ -26,7 +26,7 @@
    * 
    */
 
-  console.log("version 0.0.2");
+  console.log("version 0.1.2");
 
   window.onload = function() {init()}
   // window.addEventListener("load", init());
@@ -45,37 +45,50 @@
     ['e', 'pink'],
   ];
   
-  document.querySelector('#highlightIt').addEventListener('input', e => {
+  document.querySelector('#highlightIt').addEventListener('input', highlightIt(e));
+
+  const highlightIt = (e) => {
+    // Define the colors
+    const charColors = [
+      ['d', 'yellow'],
+      ['b', 'blue'],
+      ['p', 'purple'],
+      ['r', 'red'],
+      ['t', 'brown'],
+      ['j', 'green'],
+      ['e', 'pink'],
+    ];
     // Get the input text from the textarea element
     let text = e.target.value;
-    // Get the output element
-    const output = document.querySelector('#output');
     // Split the input text into seperate characters into an array
     let chars = text.split('');
     
-    // For each of the characters check if it is a part of the charColors array 
+    const output = document.querySelector('#output');
+    const charsArr = highlightText(chars, charColors);
+    output.innerHTML = charsArr.join('');
+  }
+
+  const highlightText = (chars, charCols) => {
     chars.forEach((char, j) => {
       chars[j] = /\n/.exec(char)? '<br>': chars[j];
-      charColors.forEach((charColor,i) => {
-        // If character in the charColor array item is the same as the character in the chars array item
-        if(charColor[0] == char) {
+      charCols.forEach((charCol) => {
+        // If character in the charCol array item is the same as the character in the chars array item
+        if(charCol[0] == char) {
           // Check the forlast character was to see if it was an 'i'
           if (chars[j-1] == 'i') {
             // If it was an 'i' then enclose both in an span with the apropriate class
-            chars[j] = colorChar('i' + char, charColor[1]);
+            chars[j] = colorChar('i' + char, charCol[1]);
             // And change the forlast array item into an empty string
             chars[j-1] = '';
           } else if (char != 'e' && char != 'j') {
             // Perform the default action of enclosing the character in an span with the right class
-            chars[j] = colorChar(charColor[0], charColor[1]);
+            chars[j] = colorChar(charCol[0], charCol[1]);
           }
         }
       });
     });
-
-    // Joint the array of characters back into a single string and put it in 
-    output.innerHTML = chars.join('');
-  });
+    return chars;
+  }
 
   const colorChar = function(char, color) {
     return `<span class="${color}">${char}</span>`;
