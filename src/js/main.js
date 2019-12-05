@@ -40,32 +40,42 @@
   const init = function() {
     const localStore = window.localStorage;
     if (!localStore.getItem('charColors')) {
-      localStore.setItem('charColors', {
-        'd': 'yellow',
-        'b': 'blue',
-        'p': 'purple',
-        'r': 'red',
-        't': 'brown',
-        'j': 'green',
-        'e': 'pink'
-      });
+      try {
+        localStore.setItem('charColors', JSON.stringify({
+          'd': 'yellow',
+          'b': 'blue',
+          'p': 'purple',
+          'r': 'red',
+          't': 'brown',
+          'j': 'green',
+          'e': 'pink'
+        }));
+      } catch (error) {
+        throw "Setting the local storage failed with the error " + error;
+      }
     }
     if (!localStore.getItem('customProps')) {
-      localStore.setItem('customProps', {
-        '--d': '#bfbf00',
-        '--b': '#0000ff',
-        '--p': '#800080',
-        '--r': '#ff0000',
-        '--t': '#8b4513',
-        '--ij': '#008000',
-        '--ie': '#ff69b4',
-      });
+      try { 
+        localStore.setItem('customProps', JSON.stringify({
+          '--d': '#bfbf00',
+          '--b': '#0000ff',
+          '--p': '#800080',
+          '--r': '#ff0000',
+          '--t': '#8b4513',
+          '--ij': '#008000',
+          '--ie': '#ff69b4',
+        }));
+      } catch (error) {
+        throw "Setting the local storage failed with the error " + error;
+      }
     }
-    const customProps = localStore.getItem('customProps');
+    const customProps = JSON.parse(localStore.getItem('customProps'));
 
     // Iterate over the object and assign the custum properties to the documentElement 
     // style with the correct color value
     for (let prop in customProps) {
+      let char = prop.replace('--', '');
+      document.querySelector(`#char-${char}`).value = customProps[prop];
       document.documentElement.style.setProperty(prop, customProps[prop]);
     }
   };
@@ -201,9 +211,15 @@
    * @param {string} value Color value to be assigned to the character
    */
   const updateLocalStorage = function(char, value, name) {
-    const localVar = window.localStorage.getItem(name);
+    const localVar = JSON.parse(window.localStorage.getItem(name));
+    console.log(localVar);
     localVar[`--${char}`] = value;
-    window.localStorage.setItem(name, localVar);
+    try {
+      window.localStorage.setItem(name, JSON.stringify(localVar));
+    } catch (error) {
+      throw "Setting the local storage failed with the error " + error;
+    }
+    init();
   };
 
 })();
