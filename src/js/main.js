@@ -45,7 +45,7 @@
     ['e', 'pink'],
   ];
   
-  document.querySelector('#highlightIt').addEventListener('input', highlightIt(e));
+  document.querySelector('#highlightIt').addEventListener('input', e => highlightIt(e));
 
   const highlightIt = (e) => {
     // Define the colors
