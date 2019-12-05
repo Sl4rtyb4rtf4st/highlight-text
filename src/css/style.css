@@ -69,6 +69,14 @@ a:hover {
   text-align: center;
 }
 
+.character-color-select {
+  width: 100%;  
+}
+
+.character-color-select .selector {
+  width: 33%;
+}
+
 #output .yellow,
 .yellow {
   font-weight: 700; 
