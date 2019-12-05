@@ -23,7 +23,7 @@
    * 
    */
 
-  console.log("version 0.1.2");
+  console.log("version 0.1.3");
 
   window.onload = function() {init()}
   // window.addEventListener("load", init());
@@ -70,16 +70,24 @@
       chars[j] = /\n/.exec(char)? '<br>': chars[j];
       charCols.forEach((charCol) => {
         // If character in the charCol array item is the same as the character in the chars array item
-        if(charCol[0] == char) {
+        if(charCol[0] == char || charCol[0].toUpperCase() == char) {
           // Check the forlast character was to see if it was an 'i'
-          if (chars[j-1] == 'i') {
-            // If it was an 'i' then enclose both in an span with the apropriate class
-            chars[j] = colorChar('i' + char, charCol[1]);
+          if (chars[j-1] == 'i' || chars[j-1] == 'I') {
+            if (chars[j-1] == 'I') {
+              chars[j] = colorChar('I' + char, charCol[1]);
+            } else {
+              // If it was an 'i' or 'I' then enclose both in an span with the apropriate class
+              chars[j] = colorChar('i' + char, charCol[1]);
+            }
             // And change the forlast array item into an empty string
             chars[j-1] = '';
-          } else if (char != 'e' && char != 'j') {
+          } else if (char != 'e' && char != 'j' && char != 'J' && char != 'E') {
             // Perform the default action of enclosing the character in an span with the right class
-            chars[j] = colorChar(charCol[0], charCol[1]);
+            if (charCol[0].toUpperCase() == char) {
+              chars[j] = colorChar(charCol[0].toUpperCase(), charCol[1]);
+            } else {
+              chars[j] = colorChar(charCol[0], charCol[1]);
+            }
           }
         }
       });
