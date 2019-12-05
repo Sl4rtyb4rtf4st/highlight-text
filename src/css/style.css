@@ -1,8 +1,17 @@
-root {
+:root {
   --base-background-color: #1f1f1f;
   --base-text-color: #fffafa;
   --base-header-light-color: #4d4e53;
   --base-header-dark-color: #fffafa;
+}
+html {
+  --d: #bfbf00;   /*yellow*/
+  --b: #0000ff;   /*blue*/
+  --p: #800080;   /*purple*/
+  --r: #ff0000;   /*red*/
+  --t: #8b4513;   /*saddlebrown*/
+  --ij: #008000;  /*green*/
+  --ie: #ff69b4;   /*hotpink*/
 }
 
 * {
@@ -80,37 +89,37 @@ a:hover {
 #output .yellow,
 .yellow {
   font-weight: 700; 
-  color: #bfbf00;
+  color: var(--d);
 }
 #output .blue,
 .blue {
   font-weight: 700; 
-  color: blue;
+  color: var(--b);
 }
 #output .purple,
 .purple {
   font-weight: 700; 
-  color: purple;
+  color: var(--p);
 }
 #output .red,
 .red {
   font-weight: 700; 
-  color: red;
+  color: var(--r);
 }
 #output .brown,
 .brown {
   font-weight: 700; 
-  color: saddlebrown;
+  color: var(--t);
 }
 #output .green,
 .green {
   font-weight: 700; 
-  color: green;
+  color: var(--ij);
 }
 #output .pink,
 .pink {
   font-weight: 700; 
-  color: hotpink;
+  color: var(--ie);
 }
 
 textarea {
