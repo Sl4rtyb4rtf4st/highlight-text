@@ -114,7 +114,6 @@
    * encapsulated inside a span with a correct classname
    */
   const highlightText = (chars, charCols) => {
-    console.log(chars, charCols);
     chars.forEach((char, j) => {
       chars[j] = /\n/.exec(char)? '<br>': chars[j];
       for (let kar in charCols) {
