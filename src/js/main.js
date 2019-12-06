@@ -30,7 +30,37 @@
   } else {
     window.addEventListener("load", init());
   }
+  document.querySelector('#highlightIt').addEventListener('input', e => highlightIt(e));
+  document.querySelector('.character-color-select').addEventListener('change', e => colorChange(e));
+  document.querySelector('.add-button-container').addEventListener('click', e => addCharacter(e));
 
+  /**
+   * Function to add a character and a color to the collection of 
+   * characters color combinations
+   * 
+   * @param {object} e Event object for the click handler
+   */
+  const addCharacter = function(e) {
+    if (e.target.type !== 'button') return;
+    const children = Array.from(e.target.parentNode.children);
+    console.log(children);
+    children.forEach(child => {
+      if (child.tagName === 'DIV') {
+        const subChildren = Array.from(child.children)
+        console.log(subChildren);
+        subChildren.forEach(subChild => {
+          if (subChild.id === "charColor") {
+            var color = subChild.value;
+          } else if (subChild.id = "addCharacter") {
+            var character = subChild.value;
+          }
+        });
+      }
+    });
+    console.log(color, character);
+    // updateLocalStorage(character, color, 'charColors');
+  }
+l  
   /**
    * Function to initialize the script by checking localstorage for 
    * required info and if not present adding it
@@ -81,11 +111,11 @@
   };
 
  
-  document.querySelector('#highlightIt').addEventListener('input', e => highlightIt(e));
-
-  
   /**
-   * 
+   * Evemt handler function for the input even on the textarea element, 
+   * the function retrieves the localstored charColors string the split 
+   * value of the textarea content, feeds that to the highlighttext function
+   * and places the joined result back into a DOM element
    * 
    * @param {object} e The event transmited on an input event on the 
    * textarea element
@@ -98,8 +128,8 @@
     // Split the input text into seperate characters into an array
     let chars = text.split('');
     
-    const output = document.querySelector('#output');
     const charsArr = highlightText(chars, charColors);
+    const output = document.querySelector('#output');
     output.innerHTML = charsArr.join('');
   };
 
@@ -155,8 +185,6 @@
     console.log(char, color);
     return `<span class="${color}">${char}</span>`;
   };
-
-  document.querySelector('.character-color-select').addEventListener('change', e => colorChange(e));
 
   /**
    * This function deals with the 'change' event when the color value 

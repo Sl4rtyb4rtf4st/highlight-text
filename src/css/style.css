@@ -144,6 +144,16 @@ textarea {
   background-color: #1f1f1f;
 }
 
+.add-button-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.input-container input {
+  width: 40px;
+}
+
 @media only screen and (max-width: 720px) {
   header {
     padding: 1rem;
