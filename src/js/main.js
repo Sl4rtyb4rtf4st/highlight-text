@@ -89,7 +89,7 @@
    */
   const highlightIt = (e) => {
     // Get the character colors object from the local storage
-    const charColors = window.localStorage.getItem('charColors');
+    const charColors = JSON.parse(window.localStorage.getItem('charColors'));
     // Get the input text from the textarea element
     let text = e.target.value;
     // Split the input text into seperate characters into an array
@@ -114,6 +114,7 @@
    * encapsulated inside a span with a correct classname
    */
   const highlightText = (chars, charCols) => {
+    console.log(chars, charCols);
     chars.forEach((char, j) => {
       chars[j] = /\n/.exec(char)? '<br>': chars[j];
       for (let kar in charCols) {
@@ -138,29 +139,6 @@
           }
         }
       }
-      // charCols.forEach((charCol) => {
-      //   // If character in the charCol array item is the same as the character in the chars array item
-      //   if(charCol[0] == char || charCol[0].toUpperCase() == char) {
-      //     // Check the forlast character was to see if it was an 'i'
-      //     if (chars[j-1] == 'i' || chars[j-1] == 'I') {
-      //       if (chars[j-1] == 'I') {
-      //         chars[j] = colorChar('I' + char, charCol[1]);
-      //       } else {
-      //         // If it was an 'i' or 'I' then enclose both in an span with the apropriate class
-      //         chars[j] = colorChar('i' + char, charCol[1]);
-      //       }
-      //       // And change the forlast array item into an empty string
-      //       chars[j-1] = '';
-      //     } else if (char != 'e' && char != 'j' && char != 'J' && char != 'E') {
-      //       // Perform the default action of enclosing the character in an span with the right class
-      //       if (charCol[0].toUpperCase() == char) {
-      //         chars[j] = colorChar(charCol[0].toUpperCase(), charCol[1]);
-      //       } else {
-      //         chars[j] = colorChar(charCol[0], charCol[1]);
-      //       }
-      //     }
-      //   }
-      // });
     });
     return chars;
   };
@@ -193,7 +171,6 @@
     const value = target.value;
     // Get the character in question
     const char = target.name.replace('char-', '');
-    console.log(`--${char}`, value);
     const element = document.documentElement;
     // Assign the the color value to the custom property assigned to the documentelement style
     element.style.setProperty(`--${char}`, value);
@@ -209,13 +186,13 @@
    */
   const updateLocalStorage = function(char, value, name) {
     const localVar = JSON.parse(window.localStorage.getItem(name));
-    console.log(localVar);
     localVar[`--${char}`] = value;
     try {
       window.localStorage.setItem(name, JSON.stringify(localVar));
     } catch (error) {
       throw "Setting the local storage failed with the error " + error;
     }
+    // Rerun the init function to get everything connected to the DOM
     init();
   };
 
