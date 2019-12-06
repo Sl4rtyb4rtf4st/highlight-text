@@ -96,11 +96,11 @@ gulp.task('minify-js', function(done) {
 /**
  * Push build to gh-pages
  */
-gulp.task('deploy', function (done) {
-  gulp.src("./dist/**/*")
-    .pipe(deploy());
-  done();
-});
+// gulp.task('deploy', function (done) {
+//   gulp.src("./dist/**/*")
+//     .pipe(deploy());
+//   done();
+// });
 
 /**
  *  Watch for changes in the destination folders
@@ -120,15 +120,15 @@ gulp.task('watch', function() {
 /**
  * Combine everything with the deploy function
  */
-gulp.task('deployitall', gulp.series(
-  'copyfiles', 
-  'copyFav', 
-  'copysounds', 
-  'imagemin', 
-  'minify-css', 
-  'minify-js', 
-  'deploy'
-  ));
+// gulp.task('deployitall', gulp.series(
+//   'copyfiles', 
+//   'copyFav', 
+//   'copysounds', 
+//   'imagemin', 
+//   'minify-css', 
+//   'minify-js', 
+//   'deploy'
+//   ));
 
 /**
  * Do all except watch in the default

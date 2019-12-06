@@ -117,26 +117,24 @@
    * encapsulated inside a span with a correct classname
    */
   const highlightText = (chars, charCols) => {
-    chars.forEach((char, j) => {
-      chars[j] = /\n/.exec(char)? '<br>': chars[j];
+    chars.forEach((char, i) => {
+      chars[i] = /\n/.exec(char)? '<br>': chars[i];
       for (let kar in charCols) {
         if(kar == char || kar.toUpperCase() == char) {
-          // Check the forlast character was to see if it was an 'i'
-          if (chars[j-1] == 'i' || chars[j-1] == 'I') {
-            if (chars[j-1] == 'I') {
-              chars[j] = colorChar('I' + char, charCols[kar]);
-            } else {
-              // If it was an 'i' or 'I' then enclose both in an span with the apropriate class
-              chars[j] = colorChar('i' + char, charCols[kar]);
-            }
+          const doulble = ['ie','ij','Ie','Ij','IJ','IE'];
+          // Check the forlast character in conbination with the current character 
+          // one of the elements in the double variable
+          if (doulble.indexOf(chars[i-1] + kar) != -1) {
+            console.log(kar, char);
+            chars[i] = colorChar(chars[i-1] + kar, charCols[kar]);
             // And change the forlast array item into an empty string
-            chars[j-1] = '';
+            chars[i-1] = '';
           } else if (char != 'e' && char != 'j' && char != 'J' && char != 'E') {
             // Perform the default action of enclosing the character in an span with the right class
             if (kar.toUpperCase() == char) {
-              chars[j] = colorChar(kar.toUpperCase(), charCols[kar]);
+              chars[i] = colorChar(kar.toUpperCase(), charCols[kar]);
             } else {
-              chars[j] = colorChar(kar, charCols[kar]);
+              chars[i] = colorChar(kar, charCols[kar]);
             }
           }
         }
@@ -154,6 +152,7 @@
    * @returns string Template sting of the char inclosed in a span
    */
   const colorChar = function(char, color) {
+    console.log(char, color);
     return `<span class="${color}">${char}</span>`;
   };
 
