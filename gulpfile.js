@@ -1,17 +1,20 @@
-const gulp = require('gulp'),
-      uglify = require('gulp-uglify'),
-      concat = require('gulp-concat'),
-      cleanCSS = require('gulp-clean-css'),
-      imagemin = require('gulp-imagemin'),
-      babel = require('gulp-babel'),
-      browserSync = require('browser-sync').create(),
-      sourcemaps = require('gulp-sourcemaps'),
+const gulp         = require('gulp'),
+      uglify       = require('gulp-uglify'),
+      concat       = require('gulp-concat'),
+      cleanCSS     = require('gulp-clean-css'),
+      imagemin     = require('gulp-imagemin'),
+      babel        = require('gulp-babel'),
+      browserSync  = require('browser-sync').create(),
+      sourcemaps   = require('gulp-sourcemaps'),
       autoprefixer = require('gulp-autoprefixer'),
-      lec = require('gulp-line-ending-corrector');
+      lec          = require('gulp-line-ending-corrector');
+      deploy       = require('gulp-gh-pages');
 
 // var pipeline = require('readable-stream').pipeline; // getting error
 
-// Copy all image files from base dir
+/**
+ * Copy all image files from base dir
+ */
 gulp.task('copyFav', function(done) {
   gulp.src(['./src/*.ico', './src/*.png'])
     .pipe(gulp.dest('dist'))
@@ -19,7 +22,9 @@ gulp.task('copyFav', function(done) {
   done();
 });
 
-// Copy all the text files from base dir
+/**
+ * Copy all the text files from base dir
+ */ 
 gulp.task('copyfiles', function(done) {
   gulp.src(['/src/*.svg', './src/*.html', './src/site.webmanifest', './src/*.xml'])
     .pipe(lec())
@@ -29,7 +34,9 @@ gulp.task('copyfiles', function(done) {
 });
 
 
-// Optimize images
+/**
+ * Optimize images
+ */ 
 gulp.task('imagemin', function(done) {
   gulp.src('src/img/*.*')
     .pipe(imagemin())
@@ -39,7 +46,9 @@ gulp.task('imagemin', function(done) {
   done();
 });
 
-// Copy audio files
+/**
+ * Copy audio files
+ */ 
 gulp.task('copysounds', function(done) {
   gulp.src('./src/sounds/*.*')
     .pipe(gulp.dest('./dist/sounds'))
@@ -47,7 +56,9 @@ gulp.task('copysounds', function(done) {
   done();
 }); 
 
-// Concat/Minify css
+/**
+ * Concat/Minify css
+ */
 gulp.task('minify-css', function(done) {
   gulp.src('src/css/*.css')
     .pipe(concat('/css/style.css'))
@@ -64,7 +75,9 @@ gulp.task('minify-css', function(done) {
   done();
 });
 
-// Transpile/Concat/uglify js files
+/**
+ *  Transpile/Concat/uglify js files
+ */
 gulp.task('minify-js', function(done) {
   gulp.src('src/js/*.js')
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -80,7 +93,18 @@ gulp.task('minify-js', function(done) {
   done();
 });
 
-// Watch for changes in the destination folders
+/**
+ * Push build to gh-pages
+ */
+gulp.task('deploy', function (done) {
+  gulp.src("./dist/**/*")
+    .pipe(deploy());
+  done();
+});
+
+/**
+ *  Watch for changes in the destination folders
+ */
 gulp.task('watch', function() {
   browserSync.init({
     server: {
@@ -93,4 +117,27 @@ gulp.task('watch', function() {
   gulp.watch('src/css/*.css', gulp.parallel('minify-css')).on('change', browserSync.reload);
 });
 
-gulp.task('default', gulp.series('copyfiles', 'copyFav', 'copysounds', 'imagemin', 'minify-css', 'minify-js'));
+/**
+ * Combine everything with the deploy function
+ */
+gulp.task('deployitall', gulp.series(
+  'copyfiles', 
+  'copyFav', 
+  'copysounds', 
+  'imagemin', 
+  'minify-css', 
+  'minify-js', 
+  'deploy'
+  ));
+
+/**
+ * Do all except watch in the default
+ */
+gulp.task('default', gulp.series(
+  'copyfiles', 
+  'copyFav', 
+  'copysounds', 
+  'imagemin', 
+  'minify-css', 
+  'minify-js'
+  ));

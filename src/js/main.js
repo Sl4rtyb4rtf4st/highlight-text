@@ -18,6 +18,9 @@
    * textarea but only have to klik on the label text and can 
    * either start typing or past a load of text
    * 
+   * @TODO Add a print css theme so the only the processed version 
+   * of the text gets printed
+   * 
    */
 
   console.log("version 0.2.0");
