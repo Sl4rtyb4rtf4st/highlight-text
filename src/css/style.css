@@ -86,6 +86,11 @@ a:hover {
   width: 33%;
 }
 
+p#output {
+  line-height: 2.5em;
+  letter-spacing: 1px;
+}
+
 #output .yellow,
 .yellow {
   font-weight: 700; 
@@ -193,4 +198,42 @@ footer {
 }
 footer a:link, footer a:visited, footer a:active {
   color: white;
+}
+
+@page {
+  size: A4;
+}
+@page :left {
+  margin-left: 3cm;
+}
+@page :right {
+  margin-left: 4cm;
+}
+@page:right{
+  @bottom-right {
+    content: "Pagina " counter(page) " van " counter(pages);
+  }
+}
+h1 {
+  page-break-before: always;
+}
+h1, h2, h3, h4, h5 {
+  page-break-after: avoid;
+}
+table, figure {
+  page-break-inside: avoid;
+}
+
+@media print {
+  .top-section, 
+  .add-button-container, 
+  .character-color-select, 
+  .text-input,
+  footer {
+    display: none;
+  }
+  .output-text {
+    color: black;
+    background-color: white;
+  }
 }

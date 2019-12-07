@@ -14,6 +14,9 @@
    * 
    * @TODO Pour it all into a VUE/react mold
    * 
+   * @TODO Add a slider for the letter spacing
+   * @TODO Add a slider for the line-height 
+   * 
    * @TODO Make the label text so that you no longer need the 
    * textarea but only have to klik on the label text and can 
    * either start typing or past a load of text
@@ -23,7 +26,7 @@
    * 
    */
 
-  console.log("version 0.2.0");
+  console.log("version 0.2.5");
 
   if (window.hasOwnProperty('onload')) {
     window.onload = function() {init()}
@@ -43,11 +46,11 @@
   const addCharacter = function(e) {
     if (e.target.type !== 'button') return;
     const children = Array.from(e.target.parentNode.children);
-    console.log(children);
+    // console.log(children);
     children.forEach(child => {
       if (child.tagName === 'DIV') {
         const subChildren = Array.from(child.children)
-        console.log(subChildren);
+        // console.log(subChildren);
         subChildren.forEach(subChild => {
           if (subChild.id === "charColor") {
             var color = subChild.value;
@@ -57,10 +60,10 @@
         });
       }
     });
-    console.log(color, character);
+    // console.log(color, character);
     // updateLocalStorage(character, color, 'charColors');
   }
-l  
+
   /**
    * Function to initialize the script by checking localstorage for 
    * required info and if not present adding it
@@ -155,7 +158,7 @@ l
           // Check the forlast character in conbination with the current character 
           // one of the elements in the double variable
           if (doulble.indexOf(chars[i-1] + kar) != -1) {
-            console.log(kar, char);
+            // console.log(kar, char);
             chars[i] = colorChar(chars[i-1] + kar, charCols[kar]);
             // And change the forlast array item into an empty string
             chars[i-1] = '';
@@ -182,7 +185,7 @@ l
    * @returns string Template sting of the char inclosed in a span
    */
   const colorChar = function(char, color) {
-    console.log(char, color);
+    // console.log(char, color);
     return `<span class="${color}">${char}</span>`;
   };
 
